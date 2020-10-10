@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.Random;
 
 /**
  * A class implementing the backtracking CSP algorithm.
@@ -59,12 +60,15 @@ public class BacktrackingCSPSolver implements CSPSolver {
 	 * @return A variable that is not assigned yet.
 	 */
 	protected <E> String selectUnassignedVariable(CSP<E> csp, Assignment<E> assignment) {
+		List<String> unassigned= new ArrayList<String>(); 
 		for(String i:csp.variables){
 			if(!assignment.containsKey(i)){
-				return i;
+				unassigned.add(i);
 			}
 		}
-		return null;
+		Random random = new Random();
+		int rand=random.nextInt(unassigned.size());
+		return unassigned.get(rand);
 	}
 	/**
 	 * Selects an unassigned variable. For this algorithm, it can be just the first, or a
