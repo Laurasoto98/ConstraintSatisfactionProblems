@@ -205,7 +205,7 @@ public class BacktrackingCSPSolver implements CSPSolver {
 	
 	private <E> Assignment<E> backtracking(CSP<E> csp, Assignment<E> assignment, HashMap<String,Set<E>> explored) {
 		++iterationCount;
-		if(assignment.isComplete(csp)){
+		if(assignment.isComplete(csp) || iterationCount>10000){
 			return assignment;
 		}
 		String var=selectUnassignedVariable(csp, assignment);
@@ -241,7 +241,7 @@ public class BacktrackingCSPSolver implements CSPSolver {
 	
 	private <E> Assignment<E> backtrackingMRVLCVDH(CSP<E> csp, Assignment<E> assignment, HashMap<String,Set<E>> explored) {
 		++iterationCount;
-		if(assignment.isComplete(csp)){
+		if(assignment.isComplete(csp) || iterationCount>10000){
 			return assignment;
 		}
 		String var=MinRemainingValue(csp, assignment);
@@ -274,7 +274,7 @@ public class BacktrackingCSPSolver implements CSPSolver {
 	
 	private <E> Assignment<E> backtrackFC(CSP<E> csp, Assignment<E> assignment) {
 		++iterationCount;
-		if(assignment.isComplete(csp)){
+		if(assignment.isComplete(csp) || iterationCount>10000){
 			return assignment;
 		}
 		String var=selectUnassignedVariable(csp, assignment);
@@ -304,7 +304,7 @@ public class BacktrackingCSPSolver implements CSPSolver {
 	 */
 	private <E> Assignment<E> backtrackFCMRVLRVDH(CSP<E> csp, Assignment<E> assignment) {
 		++iterationCount;
-		if(assignment.isComplete(csp)){
+		if(assignment.isComplete(csp) || iterationCount>10000){
 			return assignment;
 		}
 		String var=MinRemainingValue(csp, assignment);
@@ -335,7 +335,7 @@ public class BacktrackingCSPSolver implements CSPSolver {
 	 */
 	private <E> Assignment<E> backtrackAC3(CSP<E> csp, Assignment<E> assignment) {
 		++iterationCount;
-		if(assignment.isComplete(csp)){
+		if(assignment.isComplete(csp) || iterationCount>10000){
 			return assignment;
 		}
 		String var=selectUnassignedVariable(csp, assignment);
@@ -366,7 +366,7 @@ public class BacktrackingCSPSolver implements CSPSolver {
 	
 	private <E> Assignment<E> backtrackAC3MRVLRVDH(CSP<E> csp, Assignment<E> assignment) {
 		++iterationCount;
-		if(assignment.isComplete(csp)){
+		if(assignment.isComplete(csp) || iterationCount>10000){
 			return assignment;
 		}
 		String var=MinRemainingValue(csp, assignment);

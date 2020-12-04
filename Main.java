@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Main {
 	
@@ -235,27 +236,39 @@ public class Main {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
+		
+		Scanner input = new Scanner(System.in);
+		System.out.println("What do you want to do: \n1: political map of the South-Eastern states \n2: Complete USA Map \n3: Sudoku");
+		int action = input.nextInt();
 		Map map = new Map();
-		initCompleteUSMap(map);
-		
 		Sudoku sudoku = new Sudoku();
-		initSudoku(sudoku);
+		CSP<Integer> cspb, cspbmrv, csp, cspmrv, cspac3, cspac3mrv,cspmin;
 		
-		CSP<Integer> cspb = map.createCSP();
-		//CSP<Integer> cspb = sudoku.createCSP();
-		CSP<Integer> cspbmrv = map.createCSP();
-		//CSP<Integer> cspbmrv = sudoku.createCSP();
-		CSP<Integer> csp = map.createCSP();
-		//CSP<Integer> csp = sudoku.createCSP();
-		CSP<Integer> cspmrv = map.createCSP();
-		//CSP<Integer> cspmrv = sudoku.createCSP();
-		CSP<Integer> cspac3 = map.createCSP();
-		//CSP<Integer> cspac3 = sudoku.createCSP();
-		CSP<Integer> cspac3mrv = map.createCSP();
-		//CSP<Integer> cspac3mrv = sudoku.createCSP();
-		CSP<Integer> cspmin = map.createCSP();
-		//CSP<Integer> cspmin = sudoku.createCSP();
+		if(action!=3){
+			if(action ==1)
+				initMap(map);
+			else
+				initCompleteUSMap(map);
 		
+			cspb = map.createCSP();
+			cspbmrv = map.createCSP();
+			csp = map.createCSP();
+			cspmrv = map.createCSP();	
+			cspac3 = map.createCSP();
+			cspac3mrv = map.createCSP();	
+			cspmin = map.createCSP();
+		}
+		else{
+			initSudoku(sudoku);
+			cspb = sudoku.createCSP();
+			cspbmrv = sudoku.createCSP();
+			csp = sudoku.createCSP();
+			cspmrv = sudoku.createCSP();	
+			cspac3 = sudoku.createCSP();
+			cspac3mrv = sudoku.createCSP();	
+			cspmin = sudoku.createCSP();
+		}
+
 		/*
 		cspb.domains.get("Georgia").clear();
 		cspb.domains.get("Georgia").add(2);
@@ -274,7 +287,6 @@ public class Main {
 		cspb.domains.get("Georgia").clear();
 		cspb.domains.get("Georgia").add(2);
 		*/
-		
 		
 		CSPSolver solverForwardChecking = new BacktrackingCSPSolver();
 		CSPSolver solverForwardCheckingMRVLRVDH = new BacktrackingCSPSolver();
